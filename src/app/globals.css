@@ -1,8 +1,25 @@
-@import "tailwindcss";
-@plugin "daisyui";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto:wght@300;400;500&family=Playfair+Display:wght@400;500;600&display=swap');
+
+@font-face {
+  font-family: 'Winky Rough';
+  src: url('/public/Winky_Rough/static/WinkyRough-LightItalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Winky Rough';
+  src: url('/public/Winky_Rough/static/WinkyRough-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
-  --background: #ffffff;
+  --background: #171717;
   --foreground: #171717;
 }
 
@@ -20,8 +37,8 @@
   }
 }
 
-body {
+html {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Winky Rough', sans-serif;
 }
