@@ -14,8 +14,10 @@ gsap.registerPlugin(useGSAP)
 
 export default function Home() {
   const pathref = useRef<SVGPathElement>(null);
+  
 
   useGSAP(
+    
     ()=>{
       if(!pathref.current) return;
       const length = pathref.current.getTotalLength();
@@ -78,18 +80,41 @@ export default function Home() {
         color:"red",
         duration:2,
         visibility:"visible",
-        ease:"power1.inOut",
+        ease:"power2.inOut",
        webkitTextStroke:1,
        webkitTextStrokeColor:"black"
       })
       t1.to("#name",{
-        webkitTextStrokeColor:"white"
+        webkitTextStrokeColor:"white",
+        display:"none",
+        duration:0.7
       })
+      t1.to("#boxx",{
+        visibility:"visible",
+        ease:"power1.inOut",
+        duration:0.5
+      })
+      t1.to("#svg",{
+        width:37,
+        height:37,
+        position:"absolute",
+        top:1,
+        left:10,
+        duration:0.5
+
+      })
+      t1.to("#path",{
+        fill:"black",
+        duration:0.5
+
+      })
+      
+      ,[]
     
 
      
      
-    },[]
+    }
   )
   const [count,setCount] = useState(0)
   useEffect(()=>{
@@ -119,10 +144,21 @@ const timeout = setTimeout(()=>{
 </svg>
     </div>
 
-    <div id="name" className="invisible absolute  text-white font-orbitron text-2xl "  style={{display:"block" ,top:70+"%",left:40+"%"}}>Mavius-Caption It!!</div>
+    <div  id="name" className="invisible absolute  text-white font-orbitron text-2xl "  style={{display:"block" ,top:70+"%",left:40+"%"}}>Mavius-Caption It!!</div>
    
-   
+    <div id="boxx" className=" invisible flex text-white min-w-screen h-10 shadow-sm shadow-white">
+<div className="box flex-auto absolute top-2 left-16 font-orbitron">
+Mavius
+</div>
+<div className="box flex-auto absoute text-xl pt-1 text-center font-playfair text-shadow-lg ">
+  Generate A Caption For Your Image In A Matter Of Seconds
+</div>
+
+    </div>
+
+
    </div>
+   
    
    
    
