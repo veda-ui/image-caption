@@ -2,10 +2,12 @@
 import gsap from "gsap";
 import {useGSAP} from '@gsap/react';
 import { useEffect, useRef, useState } from "react";
+import { ScrollTrigger } from "gsap/all";
 
 
 
 gsap.registerPlugin(useGSAP)
+gsap.registerPlugin(ScrollTrigger)
 
 
 
@@ -17,6 +19,7 @@ export default function Home() {
   
 
   useGSAP(
+
     
     ()=>{
       if(!pathref.current) return;
@@ -24,6 +27,11 @@ export default function Home() {
 
 
       const t1 = gsap.timeline()
+      const scrollsets = {
+        trigger:".main",
+        start: "top 25%",
+        toggleActions:"play reverse play reverse"
+      }
   
       t1.to(".loader",{
         duration:2,
@@ -46,6 +54,12 @@ export default function Home() {
         top:0,
         duration:1,
         height:100+"%",
+        minHeight:100+"vh",
+        position:"fixed",
+        inset:0,
+        overflow:"auto",
+        
+        
         delay:0.5
       })
       t1.to("#line",{
@@ -92,7 +106,8 @@ export default function Home() {
       t1.to("#boxx",{
         visibility:"visible",
         ease:"power1.inOut",
-        duration:0.5
+        duration:0.5,
+        
       })
       t1.to("#svg",{
         width:37,
@@ -100,14 +115,29 @@ export default function Home() {
         position:"absolute",
         top:1,
         left:10,
-        duration:0.5
+        duration:0.3
 
       })
       t1.to("#path",{
         fill:"black",
-        duration:0.5
+        duration:0.2
 
       })
+      
+      t1.fromTo(".imgs",{
+        visibility:"visible",
+        y:100,
+        opacity:0
+
+      }  ,{
+        y:0,
+        opacity:1,
+        duration:0.5,
+        
+
+        ease:"power3.inOut"
+      }
+      )
       
       ,[]
     
@@ -126,7 +156,7 @@ const timeout = setTimeout(()=>{
   })
   return (
   
-    <div id="body" className="min-h-screen min-w-screen bg-black">
+    <div id="body"  className=" min-h-screen min-w-screen w-full h-full fixed inset-0 bg-black overflow-auto">
     <div  style={{width:count+"%" ,top:51.5+"%"}} className="loader inline-block absolute bg-white h-0.5  max-w-screen"></div>
    
   
@@ -154,10 +184,46 @@ Mavius
   Generate A Caption For Your Image In A Matter Of Seconds
 </div>
 
+
+
     </div>
 
+    <div style={{textShadow:"4px 4px red"}} id="Head"className="imgs invisible absolute top-24 text-7xl text-white font-orbitron ">Generate Cool Captions With The Help Of Machine Learning</div>
+
+<div className="flex gap-8 absolute top-72 left-30 min-w-full h-80
+   ">
+  <img src="/img1.jpg" alt="" className="invisible flex-1 imgs border-2 border-gray-100 shadow-xl shadow-slate-600" />
+  
+  <img src="/img2.jpg" alt="" className="invisible flex-1 imgs border-2 border-gray-100 shadow-xl shadow-slate-600" />
+
+  <img src="/img3.jpg" alt="" className="invisible flex-1 imgs border-2 border-white shadow-xl shadow-slate-600" />
+
+</div>
+
+<div style={{top:102+"%", }} className="font-playfair absolute text-6xl h-80 left-44  text-white min-w-screen">Generate Captions For Images In Just A Click</div>
+<div  style={{top:120+"%",width:97+"%" }}  className="flex flex-col  absolute left-6 h-64  border-2 border-white shadow-xl shadow-gray-100" >
+  <div className="flex flex-none flex-row pl-5 pt-10 m-0 h-24 text-white text-5xl font-winky">
+    How Does it Work <div className="flex-1 pl-4 text-red-600">
+      ?
+    </div>
+    </div>
+    <div className="flex-none text-white pl-4 h-16">
+      We Use A VIT Encoder to encode the images with positional encodings into vectors which after going through multiple self attention layers
+      and linear and dropout layers returns the feature rich output which then goes through transformer decoder which again uses masked self-attention
+      layers to generate a caption appropriate for the photo. 
+    </div>
+    <div className="flex-1 text-white pl-4"> The model that we have created is a custom model which incorporates the vision image transformer
+      encoder and transformer decoder to train on a sample dataset and then the final weights are used to generate perfect captions for your images
+    </div>
+
+ 
+
+
+</div>
 
    </div>
+
+
    
    
    

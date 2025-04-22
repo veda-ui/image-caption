@@ -6,14 +6,14 @@
 
 @font-face {
   font-family: 'Winky Rough';
-  src: url('/public/Winky_Rough/static/WinkyRough-LightItalic.ttf') format('truetype');
+  src: url('/Winky_Rough/static/WinkyRough-LightItalic.ttf') format('truetype');
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Winky Rough';
-  src: url('/public/Winky_Rough/static/WinkyRough-Regular.ttf') format('truetype');
+  src: url('/Winky_Rough/static/WinkyRough-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
