@@ -15,15 +15,14 @@ gsap.registerPlugin(ScrollTrigger)
 
 
 export default function Home() {
-  const pathref = useRef<SVGPathElement>(null);
+  
   
 
   useGSAP(
 
     
     ()=>{
-      if(!pathref.current) return;
-      const length = pathref.current.getTotalLength();
+     
 
 
       const t1 = gsap.timeline()
@@ -125,6 +124,7 @@ export default function Home() {
       })
       
       t1.fromTo(".imgs",{
+       
         visibility:"visible",
         y:100,
         opacity:0
@@ -138,7 +138,32 @@ export default function Home() {
         ease:"power3.inOut"
       }
       )
-      
+      t1.fromTo("#textsec",{
+        visibility:"visible",
+     
+        opacity:0
+      },{
+
+
+        scrollTrigger:{
+          trigger:".imgs",
+          start:"bottom 80%",
+          
+          
+          toggleActions:"play reverse reverse play",
+          
+          
+
+          
+        
+        },
+        ease:"power3.inOut",
+        delay:0.5,
+        duration:1,
+        
+        opacity:1,
+        
+      })
       ,[]
     
 
@@ -169,7 +194,7 @@ const timeout = setTimeout(()=>{
    
    <div>
    <svg id='svg'  style={{visibility:"hidden",top:30+"%",left:40+"%",position:"absolute"}} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="250" height="250" viewBox="0 0 50 50">
-<path ref={pathref} id="path" d="M 11.984375 4 A 1.0001 1.0001 0 0 0 11.292969 4.2929688 L 3.2929688 12.292969 A 1.0001 1.0001 0 0 0 3 13 L 3 36 A 1.0001 1.0001 0 0 0 3.2929688 36.707031 L 13.292969 46.707031 A 1.0001 1.0001 0 0 0 15 46 L 15 25.414062 L 24.292969 34.707031 A 1.0001 1.0001 0 0 0 25.707031 34.707031 L 35 25.414062 L 35 46 A 1.0001 1.0001 0 0 0 36.707031 46.707031 L 46.707031 36.707031 A 1.0001 1.0001 0 0 0 47 36 L 47 13 A 1.0001 1.0001 0 0 0 46.707031 12.292969 L 38.707031 4.2929688 A 1.0001 1.0001 0 0 0 37.292969 4.2929688 L 25 16.585938 L 12.707031 4.2929688 A 1.0001 1.0001 0 0 0 11.984375 4 z M 12 6.4140625 L 24 18.414062 L 24 31.585938 L 5.4140625 13 L 12 6.4140625 z M 38 6.4140625 L 44.585938 13 L 26 31.585938 L 26 18.414062 L 38 6.4140625 z M 5 15.414062 L 13 23.414062 L 13 43.585938 L 5 35.585938 L 5 15.414062 z M 45 15.414062 L 45 35.585938 L 37 43.585938 L 37 23.414062 L 45 15.414062 z"
+<path  id="path" d="M 11.984375 4 A 1.0001 1.0001 0 0 0 11.292969 4.2929688 L 3.2929688 12.292969 A 1.0001 1.0001 0 0 0 3 13 L 3 36 A 1.0001 1.0001 0 0 0 3.2929688 36.707031 L 13.292969 46.707031 A 1.0001 1.0001 0 0 0 15 46 L 15 25.414062 L 24.292969 34.707031 A 1.0001 1.0001 0 0 0 25.707031 34.707031 L 35 25.414062 L 35 46 A 1.0001 1.0001 0 0 0 36.707031 46.707031 L 46.707031 36.707031 A 1.0001 1.0001 0 0 0 47 36 L 47 13 A 1.0001 1.0001 0 0 0 46.707031 12.292969 L 38.707031 4.2929688 A 1.0001 1.0001 0 0 0 37.292969 4.2929688 L 25 16.585938 L 12.707031 4.2929688 A 1.0001 1.0001 0 0 0 11.984375 4 z M 12 6.4140625 L 24 18.414062 L 24 31.585938 L 5.4140625 13 L 12 6.4140625 z M 38 6.4140625 L 44.585938 13 L 26 31.585938 L 26 18.414062 L 38 6.4140625 z M 5 15.414062 L 13 23.414062 L 13 43.585938 L 5 35.585938 L 5 15.414062 z M 45 15.414062 L 45 35.585938 L 37 43.585938 L 37 23.414062 L 45 15.414062 z"
  ></path>
 </svg>
     </div>
@@ -188,7 +213,7 @@ Mavius
 
     </div>
 
-    <div style={{textShadow:"4px 4px red"}} id="Head"className="imgs invisible absolute top-24 text-7xl text-white font-orbitron ">Generate Cool Captions With The Help Of Machine Learning</div>
+    <div style={{textShadow:"4px 4px red"}} id="Head"className="imgs invisible absolute top-24  text-7xl text-white font-orbitron ">Generate Cool Captions With The Help Of Machine Learning</div>
 
 <div className="flex gap-8 absolute top-72 left-30 min-w-full h-80
    ">
@@ -199,8 +224,8 @@ Mavius
   <img src="/img3.jpg" alt="" className="invisible flex-1 imgs border-2 border-white shadow-xl shadow-slate-600" />
 
 </div>
-
-<div style={{top:102+"%", }} className="font-playfair absolute text-6xl h-80 left-44  text-white min-w-screen">Generate Captions For Images In Just A Click</div>
+<section id="textsec" className="invisible">
+<div id="text"style={{top:102+"%", }} className=" font-playfair absolute text-6xl h-80 left-44  text-white min-w-screen">Generate Captions For Images In Just A Click</div>
 <div  style={{top:120+"%",width:97+"%" }}  className="flex flex-col  absolute left-6 h-64  border-2 border-white shadow-xl shadow-gray-100" >
   <div className="flex flex-none flex-row pl-5 pt-10 m-0 h-24 text-white text-5xl font-winky">
     How Does it Work <div className="flex-1 pl-4 text-red-600">
@@ -208,18 +233,35 @@ Mavius
     </div>
     </div>
     <div className="flex-none text-white pl-4 h-16">
-      We Use A VIT Encoder to encode the images with positional encodings into vectors which after going through multiple self attention layers
+      We Use A VIT (Vision Image Transformer) Encoder to encode the images with positional encodings into vectors which after going through multiple self attention layers
       and linear and dropout layers returns the feature rich output which then goes through transformer decoder which again uses masked self-attention
       layers to generate a caption appropriate for the photo. 
     </div>
     <div className="flex-1 text-white pl-4"> The model that we have created is a custom model which incorporates the vision image transformer
       encoder and transformer decoder to train on a sample dataset and then the final weights are used to generate perfect captions for your images
     </div>
+   
 
  
 
 
 </div>
+</section>
+
+<div style={{top:165 +"%", left:35 +"%", textShadow:"2px 2px red"}}className="absolute text-white text-4xl font-orbitron ">
+  Upload Your Image Here
+</div>
+
+  <form  style={{top:175 +"% ", left:40 +"%"}}className="absolute" action="">
+  <input className="  bg-white " type="file" alt="Upload your image" placeholder="Upload Your Image" accept="image/*"/>
+  <button style={{}} className=" text-center shadow-lg shadow-red-600  h-7 w-20 bg-white relative top-12 right-48 transition-all ease-in-out hover:scale-110 hover:bg-red-300 active:bg-red-700 "type="button">
+    Submit 
+  </button>
+  </form>
+
+
+
+
 
    </div>
 
