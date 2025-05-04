@@ -3,6 +3,7 @@ import gsap from "gsap";
 import {useGSAP} from '@gsap/react';
 import { useEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/all";
+import {upload} from "../controllers/uploadcontrolls"
 
 
 
@@ -14,7 +15,9 @@ gsap.registerPlugin(ScrollTrigger)
 
 
 
+
 export default function Home() {
+  const [uploaded,setUploaded] = useState(false)
   
   
 
@@ -26,11 +29,7 @@ export default function Home() {
 
 
       const t1 = gsap.timeline()
-      const scrollsets = {
-        trigger:".main",
-        start: "top 25%",
-        toggleActions:"play reverse play reverse"
-      }
+      
   
       t1.to(".loader",{
         duration:2,
@@ -252,9 +251,22 @@ Mavius
   Upload Your Image Here
 </div>
 
-  <form  style={{top:175 +"% ", left:40 +"%"}}className="absolute" action="">
-  <input className="  bg-white " type="file" alt="Upload your image" placeholder="Upload Your Image" accept="image/*"/>
-  <button style={{}} className=" text-center shadow-lg shadow-red-600  h-7 w-20 bg-white relative top-12 right-48 transition-all ease-in-out hover:scale-110 hover:bg-red-300 active:bg-red-700 "type="button">
+  <form  style={{top:175 +"% ", left:40 +"%"}}className="absolute" action = {async(formData) => 
+    {
+      const result = await upload(formData)
+     if( result){
+      setUploaded(true)
+      console.log("Image Uploaded")
+     }
+     else{
+      console.log("Image Not Uploaded")
+     }
+
+
+    }
+  }>
+  <input className="  bg-white " type="file" name="file" alt="Upload your image" placeholder="Upload Your Image" accept="image/*"/>
+  <button style={{}} className=" text-center shadow-lg shadow-red-600  h-7 w-20 bg-white relative top-12 right-48 transition-all ease-in-out hover:scale-110 hover:bg-red-300 active:bg-red-700 "type="submit">
     Submit 
   </button>
   </form>
